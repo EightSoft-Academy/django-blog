@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
+from .forms import EmailPostForm
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 
@@ -11,6 +12,23 @@ class PostListView(ListView):
    paginate_by = 3
    template_name = 'blog/post/list.html'
 
+
+def post_detail(request, year, month, day, post):
+    '''Only works with 'published' articles.
+       In Post model in models.py 'unique_for_date' param was added in the 'slug' field-
+       - this ensures that there will be only one post with a slug for a given date.
+       Raise Error [404 - Not Found] if no object is found.
+    '''
+    post = get_object_or_404(Post, slug=post,
+                                   status='published',
+                                   publish__year=year,
+                                   publish__month=month,
+                                   publish__day=day,)
+
+    return render(request, 'blog/post/detail.html', {'post': post})
+
+
+# post_list() is that same as PosrListView()
 # def post_list(request):
 #    '''Lists all articles. posts = Post.published.all()
 #    '''
@@ -28,18 +46,3 @@ class PostListView(ListView):
 #       posts = paginator.page(paginator.num_pages)
 
 #    return render(request, 'blog/post/list.html', {'page': page, 'posts': posts})
-
-
-def post_detail(request, year, month, day, post):
-    '''Only works with 'published' articles.
-       In Post model in models.py 'unique_for_date' param was added in the 'slug' field-
-       - this ensures that there will be only one post with a slug for a given date.
-       Raise Error [404 - Not Found] if no object is found.
-    '''
-    post = get_object_or_404(Post, slug=post,
-                                   status='published',
-                                   publish__year=year,
-                                   publish__month=month,
-                                   publish__day=day,)
-
-    return render(request, 'blog/post/detail.html', {'post': post})
