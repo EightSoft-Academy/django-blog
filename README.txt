@@ -3,29 +3,29 @@ BOOK: Django 3 By Examples (03.07.2020)
 CHAPTER 1: Building a Blog Application
 ==================================================
 Steps for creating a project and apps:
-• python -m venv my_env
-• .\my_env\Scripts\activate
-• deactivate
-• pip install "Django==3.0.*"
-• django-admin startproject my_project
-• Running a development server-> python manage.py runserver
-• python manage.py startapp my_app
-• designing models in models.py
-• add/activate the application in the list of INSTALLED_APPS->
+â€¢ python -m venv my_env
+â€¢ .\my_env\Scripts\activate
+â€¢ deactivate
+â€¢ pip install "Django==3.0.*"
+â€¢ django-admin startproject my_project
+â€¢ Running a development server-> python manage.py runserver
+â€¢ python manage.py startapp my_app
+â€¢ designing models in models.py
+â€¢ add/activate the application in the list of INSTALLED_APPS->
 'my_app.apps.My_AppConfig'
-• generate(create & apply) migrations->
+â€¢ generate(create & apply) migrations->
 python manage.py makemigrations my_app 
 python manage.py sqlmigrate my_app 0001 <-returns the SQL or generates a table without executing it.
 python manage.py migrate
-• create an administration site for your models->
+â€¢ create an administration site for your models->
 python manage.py createsuperuser
-• TIPS-2 admin.py-> 
+â€¢ TIPS-2 admin.py-> 
 from .models import My_Model 
 admin.site.register(My_Model)
-• TIPS-5-6-7 (views.py->urls.py->.html)-> building views, urls, templates and static 
-• python manage.py collectstatic
-• adding pagination (p.s. different in ClassBasedView)-> pages[34-36]
-• TIPS-8 views.py-> Class based views
+â€¢ TIPS-5-6-7 (views.py->urls.py->.html)-> building views, urls, templates and static 
+â€¢ python manage.py collectstatic
+â€¢ adding pagination (p.s. different in ClassBasedView)-> pages[34-36]
+â€¢ TIPS-8 views.py-> Class based views
 --------------------------------------------------
 For keeping all apps in one folder, add in settings.py->
 PROJECT_ROOT = os.path.dirname(__file__)
@@ -130,11 +130,11 @@ TIPS-8: views.py-> When we use ClassBasedViews we must change->
 CHAPTER 2: Enhancing Your Blog with Advanced Features
 =====================================================
 In this chapter, we will cover the following topics:
-• Sending emails with Django
-• TIPS-9 Creating forms and handling them in views
-• Creating forms from models
-• Integrating third-party applications
-• Building complex QuerySets
+â€¢ Sending emails with Django
+â€¢ TIPS-9 Creating forms and handling them in views
+â€¢ Creating forms from models
+â€¢ Integrating third-party applications
+â€¢ Building complex QuerySets
  
 1. TIPS-9 sharing posts via e-mail:
     -- create a form for users to fill email and name;
