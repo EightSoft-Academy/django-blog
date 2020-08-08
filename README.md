@@ -105,7 +105,7 @@ We get QuerySet objects using managers, each Django model has at least one model
   def post_list(request):
       posts = Post.published.all()
       return render(request, 'blog/post/list.html', {'posts': posts})
-      ```
+ ```
 ---
 #### TIPS-6: my_app/urls.py-> DO NOT FORGET TO INCLUDE APP IN ROOT urls.py ALSO ('blog.apps.BlogConfig',)!
 ``` python
