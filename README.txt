@@ -1,44 +1,54 @@
-BOOK: Django 3 By Examples (03.07.2020)
-==================================================
-CHAPTER 1: Building a Blog Application
-==================================================
-Steps for creating a project and apps:
-• python -m venv my_env
-• .\my_env\Scripts\activate
-• deactivate
-• pip install "Django==3.0.*"
-• django-admin startproject my_project
-• Running a development server-> python manage.py runserver
-• python manage.py startapp my_app
-• designing models in models.py
-• add/activate the application in the list of INSTALLED_APPS->
+# BOOK: Django 3 By Examples (03.07.2020)
+## CHAPTER 1: Building a Blog Application
+
+### Steps for creating a project and apps:
+1. Create a virtual env and start a project
+``` bash
+python -m venv my_env
+.\my_env\Scripts\activate
+deactivate
+pip install "Django==3.0.*"
+django-admin startproject my_project
+```
+2. Run a development server and create an app
+``` bash
+python manage.py runserver
+python manage.py startapp my_app
+```
+3. designe models in models.py
+4. add/activate the application in the list of INSTALLED_APPS->
 'my_app.apps.My_AppConfig'
-• generate(create & apply) migrations->
+5. generate (create & apply) migrations->
+``` bash
 python manage.py makemigrations my_app 
 python manage.py sqlmigrate my_app 0001 <-returns the SQL or generates a table without executing it.
 python manage.py migrate
-• create an administration site for your models->
+```
+6. create an administration site for your models->
+``` bash
 python manage.py createsuperuser
-• TIPS-2 admin.py-> 
+```
+7. TIPS-2 admin.py-> 
+``` python
 from .models import My_Model 
 admin.site.register(My_Model)
-• TIPS-5-6-7 (views.py->urls.py->.html)-> building views, urls, templates and static 
-• python manage.py collectstatic
-• adding pagination (p.s. different in ClassBasedView)-> pages[34-36]
-• TIPS-8 views.py-> Class based views
---------------------------------------------------
+```
+8. TIPS-5-6-7 (views.py->urls.py->.html)-> building views, urls, templates and static 
+9. python manage.py collectstatic
+10. adding pagination (p.s. different in ClassBasedView)-> pages[34-36]
+11. TIPS-8 views.py-> Class based views
+
+---
 For keeping all apps in one folder, add in settings.py->
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
---------------------------------------------------
+---
 
-TIPS-1: models.py If you edit the models.py file in order to add, remove, or change the fields of existing
-models, or if you add new models, you will have to create a new migration using the
-'makemigrations' command. The migration will allow Django to keep track of model
-changes. Then, you will have to apply it with the 'migrate' command to keep the
-database in sync with your models.
+#### TIPS-1: models.py If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
-TIPS-2: admin.py Customizing the way that models are displayed:
+---
+#### TIPS-2: admin.py Customizing the way that models are displayed:
+``` python
   from django.contrib import admin
   from .models import Post
   @admin.register(Post)
@@ -54,8 +64,9 @@ TIPS-2: admin.py Customizing the way that models are displayed:
      raw_id_fields = ('author',)
      date_hierarchy = 'publish'
      ordering = ('status', 'publish')
-
-TIPS-3: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time->
+     ```
+---
+#### TIPS-3: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time->
 * CREATING OBJECTS (in case of blog app)->
   python manage.py shell
   >>> from django.contrib.auth.models import User
@@ -73,8 +84,9 @@ We get QuerySet objects using managers, each Django model has at least one model
   My_Model.objects.filter(publish__year=2020, author__username='admin')
   My_Model.objects.exclude(title__startswith='Why')
   My_Model.objects.order_by('-title')
-
-TIPS-4: models.py Creating model managers(in case of blog app)-> 1. add to default or 2. create a new ->
+---
+#### TIPS-4: models.py Creating model managers(in case of blog app)-> 1. add to default or 2. create a new ->
+``` python
   class PublishedManager(models.Manager):
       def get_queryset(self):
           return super(PublishedManager, self).get_queryset()\
@@ -84,15 +96,19 @@ TIPS-4: models.py Creating model managers(in case of blog app)-> 1. add to defau
   # ... ...
   objects = models.Manager() # The default manager.
   published = PublishedManager() # Our custom manager.
-
-TIPS-5: views.py->
+  ```
+---
+#### TIPS-5: views.py->
+``` python
   from django.shortcuts import render
   from .models import Post
   def post_list(request):
       posts = Post.published.all()
       return render(request, 'blog/post/list.html', {'posts': posts})
-
-TIPS-6: my_app/urls.py-> DO NOT FORGET TO INCLUDE APP IN ROOT urls.py ALSO ('blog.apps.BlogConfig',)!
+      ```
+---
+#### TIPS-6: my_app/urls.py-> DO NOT FORGET TO INCLUDE APP IN ROOT urls.py ALSO ('blog.apps.BlogConfig',)!
+``` python
   from django.urls import path
   from . import views
   app_name = 'blog'
@@ -103,8 +119,9 @@ TIPS-6: my_app/urls.py-> DO NOT FORGET TO INCLUDE APP IN ROOT urls.py ALSO ('blo
      views.post_detail,
      name='post_detail'),
   ]
-
-TIPS-7: templates-> create a folder for each app inside templates folder->
+  ```
+---
+#### TIPS-7: templates-> create a folder for each app inside templates folder->
  1. templates/
        blog/
            base.html
@@ -121,14 +138,12 @@ TIPS-7: templates-> create a folder for each app inside templates folder->
     STATIC_DIR = os.path.join(BASE_DIR, 'static')
     STATICFILES_DIRS = [STATIC_DIR]
     and in TEMPLATES add-> 'DIRS': [os.path.join(PROJECT_ROOT, 'templates')],
-
-TIPS-8: views.py-> When we use ClassBasedViews we must change->
+---
+#### TIPS-8: views.py-> When we use ClassBasedViews we must change->
   1. the path(".as_view()") in my_app/urls.py
   2. change into {% include "blog/pagination.html" with page=page_obj %}
 
-=====================================================
-CHAPTER 2: Enhancing Your Blog with Advanced Features
-=====================================================
+## CHAPTER 2: Enhancing Your Blog with Advanced Features
 In this chapter, we will cover the following topics:
 • Sending emails with Django
 • TIPS-9 Creating forms and handling them in views
@@ -136,11 +151,12 @@ In this chapter, we will cover the following topics:
 • Integrating third-party applications
 • Building complex QuerySets
  
-1. TIPS-9 sharing posts via e-mail:
-    -- create a form for users to fill email and name;
-    -- create a view that handles post and sends email;
-    -- add a URL in urls.py for the new view;
-    -- create a template to display the form;
+#### TIPS-9 sharing posts via e-mail:
+1. 
+    - create a form for users to fill email and name;
+    - create a view that handles post and sends email;
+    - add a URL in urls.py for the new view;
+    - create a template to display the form;
 2. adding comments to a post
 3. tagging posts
 4. recommending similar posts
