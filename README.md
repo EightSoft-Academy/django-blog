@@ -64,7 +64,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
      raw_id_fields = ('author',)
      date_hierarchy = 'publish'
      ordering = ('status', 'publish')
-     ```
+```
 ---
 #### TIPS-3: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time->
 * CREATING OBJECTS (in case of blog app)->
