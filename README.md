@@ -35,8 +35,8 @@ admin.site.register(MyModel)
 
 For keeping all apps in one folder, add in settings.py ->
 ``PROJECT_ROOT = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
----
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))```
+
 
 - TIPS-1: models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
