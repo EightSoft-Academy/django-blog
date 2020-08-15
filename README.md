@@ -40,26 +40,7 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
 
 - TIPS-1: models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
-- TIPS-2: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time->
-* CREATING OBJECTS (in case of blog app)->
-  python manage.py shell
-  ```
-  >>> from django.contrib.auth.models import User
-  >>> from blog.models import Post
-  >>> user = User.objects.get(username='admin')
-  >>> post = Post(title='Another post',
-  ... slug='another-post',
-  ... body='Post body.',
-  ... author=user)
-  >>> post.save()
-  ```
-
-We get QuerySet objects using managers, each Django model has at least one model, and the default manager is 'objects'->
-  My_Model.objects.get()
-  My_Model.objects.all()
-  My_Model.objects.filter(publish__year=2020, author__username='admin')
-  My_Model.objects.exclude(title__startswith='Why')
-  My_Model.objects.order_by('-title')
+- TIPS-2: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time.
 
 ## CHAPTER 2: Enhancing Your Blog with Advanced Features
 In this chapter, we will cover the following topics:
@@ -69,8 +50,7 @@ In this chapter, we will cover the following topics:
 - Integrating third-party applications
 - Building complex QuerySets
  
-- sharing posts via e-mail:
-1. 
+1. sharing posts via e-mail: 
     - create a form for users to fill email and name;
     - create a view that handles post and sends email;
     - add a URL in urls.py for the new view;
