@@ -28,6 +28,21 @@ def post_detail(request, year, month, day, post):
     return render(request, 'blog/post/detail.html', {'post': post})
 
 
+def post_share(request, post_id):
+   # Retrieve post by id
+   post = get_object_or_404(Post, id=post_id, status='published')
+   if request.method == "POST":
+      # Form was submited
+      form = EmailPostForm(request.POST)
+      if form.is_valid():
+         # Form fields passed the validation
+         cd = form.cleaned_data
+         # ... send email
+   else: 
+      form = EmailPostForm()
+   return render(request, 'blog/post/share.html', {'post': post, 'form': form})
+
+
 # post_list() is that same as PosrListView()
 # def post_list(request):
 #    '''Lists all articles. posts = Post.published.all()
