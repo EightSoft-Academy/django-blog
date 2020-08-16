@@ -68,9 +68,9 @@ The chapter will cover the following points:
 - TIPS-2: ``(Post.objects.filter(body__contains='framework')`` without Postgres
 ``Post.objects.filter(body__search='django')`` with Postgres
 
--TIPS-3: (searching by multiple field = title and body, stemming(music, musician) and ranking results)
+- TIPS-3: (searching by multiple field = title and body, stemming(music, musician) and ranking results)
 
--TIPS-4: Other full-text search engines
+- TIPS-4: Other full-text search engines
 You may want to use a full-text search engine other than from PostgreSQL. If you
 want to use Solr or Elasticsearch, you can integrate them into your Django project
 using Haystack. Haystack is a Django application that works as an abstraction
