@@ -30,10 +30,9 @@ python manage.py migrate
 from .models import MyModel 
 admin.site.register(MyModel)
 ```
-8. views.py-urls.py-.html || building views, urls, templates and static 
-9. ``python manage.py collectstatic``
+8. views.py-urls.py-.html || building views, urls, templates and static ``python manage.py collectstatic``
 
-For keeping all apps in one folder, add in settings.py ->
+9. For keeping all apps in one folder, add in settings.py ->
 ``PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
 
@@ -58,4 +57,12 @@ In this chapter, we will cover the following topics:
 2. adding comments to a post
 3. tagging posts
 4. recommending similar posts
+
+## Chapter 3: Extending your blog application
+The chapter will cover the following points:
+- Creating custom template tags 
+- Adding a sitemap and post feed (root urls)
+- Implementing full text search with PostgreSQL (Post.objects.filter(body__contains='framework'))
+
+TIPS-1: simple_tag & inclusion_tag & filter
 
