@@ -18,7 +18,10 @@
     
     <!--Sidebar-->
     <div id="sidebar">
-        <h2><a href = '/'>My blog</a> | <a href="http://127.0.0.1:8000/admin/">Admin site</a></h2>
+        <h2>
+            <a href = '/'>My blog</a>
+            | <a href="{% url 'blog:post_search' %}">Search</a>
+        </h2>
         <p>This is my blog. I've written {% total_posts %} posts so far.</p> {# total_posts is the custom template tag #}
 
         <p>

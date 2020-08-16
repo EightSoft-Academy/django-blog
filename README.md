@@ -62,7 +62,16 @@ In this chapter, we will cover the following topics:
 The chapter will cover the following points:
 - Creating custom template tags 
 - Adding a sitemap and post feed (root urls)
-- Implementing full text search with PostgreSQL (Post.objects.filter(body__contains='framework'))
+- Implementing full text search with PostgreSQL (SearchVector, SearchQuery, SearchRank, Searching with trigram similarity)
 
-TIPS-1: simple_tag & inclusion_tag & filter
-
+- TIPS-1: simple_tag & inclusion_tag & filter
+- TIPS-2: ``(Post.objects.filter(body__contains='framework')`` without Postgres
+``Post.objects.filter(body__search='django')`` with Postgres
+-TIPS-3: (searching by multiple field = title and body, stemming(music, musician) and ranking results)
+-TIPS-4: Other full-text search engines
+You may want to use a full-text search engine other than from PostgreSQL. If you
+want to use Solr or Elasticsearch, you can integrate them into your Django project
+using Haystack. Haystack is a Django application that works as an abstraction
+layer for multiple search engines. It offers a simple search API that is very similar
+to Django QuerySets. You can find more information about Haystack at https://
+django-haystack.readthedocs.io/en/master/.
