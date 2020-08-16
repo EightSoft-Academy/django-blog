@@ -2,14 +2,27 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
+
     <h1>{{ post.title }}</h1>
     <p class="date">
         Published {{ post.publish }} by {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
+
+    {# Shareing the post via email #}
     <p>
         <a href="{% url "blog:post_share" post.id %}">Share this post</a>
     </p>
+
+    {# Similar Posts #}
+    <h2>Similar posts</h2>
+    {% for similar_post in similar_posts %}
+        <p>
+            <a href="{{ similar_post.get_absolute_url }}">{{ similar_post.title }}</a>
+        </p>
+    {% empty %}
+        <h3>There is no similar posts yet.</h3>
+    {% endfor %}
 
     {# For counting the number of comments #}
     {% with comments.count as total_comments %}

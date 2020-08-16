@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404
 from django.core.mail import send_mail
+from django.db.models import Count
 
 from .models import Post, Comment
 from .forms import EmailPostForm, CommentForm
@@ -71,7 +72,13 @@ def post_detail(request, year, month, day, slug):
     else:
         comment_form = CommentForm()
 
-    context = {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form}
+    # List of similar posts
+    post_tags_id = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_id).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
+
+    context = {'post': post, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'similar_posts': similar_posts}
+
     return render(request, 'blog/post/detail.html', context)
 
 # HttpResponseRedirect(reverse('blog:post_detail', args=(post.publish__year, post.publish__month, post.publish__day,
