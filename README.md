@@ -1,5 +1,5 @@
 # Django 3 By Examples
-## CHAPTER 1: Building a Blog Application
+## CHECKPOINT 1: Building a Blog Application
 
 1. Create a virtual env and start a project
 ``` bash
@@ -36,12 +36,14 @@ admin.site.register(MyModel)
 ``PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
 
+10. Create a pagination feature
+
 
 - TIPS-1: models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
 - TIPS-2: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time.
 
-## CHAPTER 2: Enhancing Your Blog with Advanced Features
+## CHECKPOINT 2: Enhancing Your Blog with Advanced Features
 In this chapter, we will cover the following topics:
 - Sending emails with Django
 - Creating forms and handling them in views
@@ -58,7 +60,7 @@ In this chapter, we will cover the following topics:
 3. tagging posts
 4. recommending similar posts
 
-## Chapter 3: Extending your blog application
+## CHECKPOINT 3: Extending your blog application
 The chapter will cover the following points:
 - Creating custom template tags 
 - Adding a sitemap and post feed (root urls)
