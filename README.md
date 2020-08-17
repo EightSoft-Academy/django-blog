@@ -48,9 +48,9 @@ admin.site.register(MyModel)
 ``PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
 
-- TIPS-1: models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
+**TIPS-1:** models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
-- TIPS-2: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time.
+**TIPS-2:** QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time.
 
 ## CHECKPOINT 2
 Enhancing Your Blog with Advanced Features:
@@ -75,14 +75,13 @@ Extending your blog application:
 - Adding a sitemap and post feed (root urls)
 - Implementing full text search with PostgreSQL (SearchVector, SearchQuery, SearchRank, Searching with trigram similarity)
 
-- TIPS-1: simple_tag & inclusion_tag & filter
-
-- TIPS-2: ``(Post.objects.filter(body__contains='framework')`` without Postgres
+**TIPS-1:** simple_tag & inclusion_tag & filter
+**TIPS-2:** ``(Post.objects.filter(body__contains='framework')`` without Postgres
 ``Post.objects.filter(body__search='django')`` with Postgres
 
-- TIPS-3: (searching by multiple field = title and body, stemming(music, musician) and ranking results)
+**TIPS-3:** (searching by multiple field = title and body, stemming(music, musician) and ranking results)
 
-- TIPS-4: Other full-text search engines
+**TIPS-4:** Other full-text search engines
 You may want to use a full-text search engine other than from PostgreSQL. If you
 want to use Solr or Elasticsearch, you can integrate them into your Django project
 using Haystack. Haystack is a Django application that works as an abstraction
