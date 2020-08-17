@@ -1,5 +1,16 @@
-# Django 3 By Examples
-## CHECKPOINT 1: Building a Blog Application
+# Building a Blog Application
+
+## CHECKPOINT 1: 
+Building a blog application:
+- Installing Django
+- Creating and configuring a Django project
+- Creating a Django application
+- Designing models and generating model migrations
+- Creating an administration site for your models
+- Working with QuerySets and managers
+- Building views, templates, and URLs
+- Adding pagination to list views
+- Using Django's class-based views
 
 1. Create a virtual env and start a project
 ``` bash
@@ -36,15 +47,12 @@ admin.site.register(MyModel)
 ``PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))``
 
-10. Create a pagination feature
-
-
 - TIPS-1: models.py - If you edit the models.py file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the 'makemigrations' command. The migration will allow Django to keep track of model changes. Then, you will have to apply it with the 'migrate' command to keep the database in sync with your models.
 
 - TIPS-2: QuerySets and managers="'objects' e.i. Post.objects.all()", (Django ORM is based in them, they retrieve objects from db, we can apply filters to them), ORM(Object relational model)-- register databases in DATABASES, u can use multiple db at the same time.
 
-## CHECKPOINT 2: Enhancing Your Blog with Advanced Features
-In this chapter, we will cover the following topics:
+## CHECKPOINT 2
+Enhancing Your Blog with Advanced Features:
 - Sending emails with Django
 - Creating forms and handling them in views
 - Creating forms from models
@@ -60,13 +68,14 @@ In this chapter, we will cover the following topics:
 3. tagging posts
 4. recommending similar posts
 
-## CHECKPOINT 3: Extending your blog application
-The chapter will cover the following points:
+## CHECKPOINT 3
+Extending your blog application:
 - Creating custom template tags 
 - Adding a sitemap and post feed (root urls)
 - Implementing full text search with PostgreSQL (SearchVector, SearchQuery, SearchRank, Searching with trigram similarity)
 
 - TIPS-1: simple_tag & inclusion_tag & filter
+
 - TIPS-2: ``(Post.objects.filter(body__contains='framework')`` without Postgres
 ``Post.objects.filter(body__search='django')`` with Postgres
 
