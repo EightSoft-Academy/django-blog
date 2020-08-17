@@ -1,4 +1,5 @@
 # Building a Blog Application
+Blog Application with tagging system, commenting feature, sharing posts via e-mail, recommending similar posts with custom search engine, and own text editor.
 
 ## CHECKPOINT 1: 
 Building a blog application:
